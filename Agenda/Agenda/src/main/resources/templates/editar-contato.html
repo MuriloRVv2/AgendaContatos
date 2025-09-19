@@ -212,7 +212,7 @@
   <div class="container">
     <a href="/atualizar" class="botao"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
     <h2>Editar Contato</h2>
-    <form th:action="@{'/atualizar/editar/' + ${contato.id}}" method="post" th:object="${contato}">
+    <form th:action="@{'/atualizar/editar/' + ${contato.id}}" method="POST" th:object="${contato}">
       <div class="input-group">
         <input type="text" id="nome" name="nome" placeholder="Digite o nome" th:value="*{nome}" required />
         <i class="fa-solid fa-user"></i>
