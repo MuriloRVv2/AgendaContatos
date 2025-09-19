@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="atualizar" content="width=device-width, initial-scale=1" />
+  <title>Atualizar Contatos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+  background: radial-gradient(circle at top left, #1e3a8a, #0f172a 80%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  color: #e0e7ff;
+}
+/* Container com vidro fosco + sombra e borda com gradiente */
+.w-full.max-w-md {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+  padding: 3rem 2.5rem;
+  border: 2px solid transparent;
+  background-clip:rgb(18, 92, 10)g-box;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+
+    /* Formas geométricas no fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -120px;
+      left: -120px;
+      width: 400px;
+      height: 400px;
+      background: #6575A0; /* azul escuro complementar */
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      opacity: 0.6;
+      filter: drop-shadow(0 0 10px #1e40af);
+      z-index: 0;
+      border-radius: 20%;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -100px;
+      right: -100px;
+      width: 350px;
+      height: 350px;
+      background: #F5C449; /* verde complementar */
+      clip-path: circle(50% at 50% 50%);
+      opacity: 0.5;
+      filter: drop-shadow(0 0 15px #22c55e);
+      z-index: 0;
+    }
+
+    /* Container */
+    .w-full.max-w-md {
+      position: relative;
+      z-index: 1;
+      background: rgba(255 255 255 / 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgb(0 0 0 / 0.25);
+      padding: 2.5rem 2rem;
+      margin: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .container {
+      background: rgba(255 255 255 / 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 1rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      width: 100%;
+      padding: 2.5rem 3rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 1;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    #contact-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      background: rgba(255 255 255 / 0.2);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-weight: 500;
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-atualizar {
+      background: rgba(0, 123, 255, 0.7);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .btn-atualizar:hover {
+      background: rgba(0, 123, 255, 0.9);
+    }
+
+    #no-contacts {
+      color: rgba(255 255 255 / 0.75);
+      font-weight: 500;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    #no-contacts::before {
+      content: "😕";
+      font-size: 2rem;
+    }
+
+    .botao {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .botao:hover {
+      box-shadow: 0 6px 16px rgba(255, 255, 255);
+    }
+
+    .rodape {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 0.75rem;
+      user-select: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="botao"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+    <h1>Atualizar Contatos</h1>
+    <div id="contact-list" class="space-y-4">
+      <div th:if="${#lists.isEmpty(contatos)}" id="no-contacts">
+        Nenhum contato cadastrado ainda.
+      </div>
+      <div th:each="contato : ${contatos}" class="contact-item">
+        <div>
+          <div><strong th:text="${contato.nome}">Nome</strong></div>
+          <div th:text="${contato.email}">email@example.com</div>
+          <div th:text="${contato.telefone}">(00) 00000-0000</div>
+          <div th:text="${contato.endereco}">Endereço</div>
+        </div>
+        <a th:href="@{'/atualizar/editar/' + ${contato.id}}" class="btn-atualizar">Atualizar</a>
+      </div>
+    </div>
+
+    <div class="rodape">
+      <p>&copy; 2025 Murilo Rodrigues. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>

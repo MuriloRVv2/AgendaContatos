@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="cadastro" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar Contato</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+  background: radial-gradient(circle at top left, #1e3a8a, #0f172a 80%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  color: #e0e7ff;
+}
+/* Container com vidro fosco + sombra e borda com gradiente */
+.w-full.max-w-md {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+  padding: 3rem 2.5rem;
+  border: 2px solid transparent;
+  background-clip:rgb(18, 92, 10)g-box;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+
+    /* Formas geométricas no fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -120px;
+      left: -120px;
+      width: 400px;
+      height: 400px;
+      background: #6575A0; /* azul escuro complementar */
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      opacity: 0.6;
+      filter: drop-shadow(0 0 10px #1e40af);
+      z-index: 0;
+      border-radius: 20%;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -100px;
+      right: -100px;
+      width: 350px;
+      height: 350px;
+      background: #F5C449; /* verde complementar */
+      clip-path: circle(50% at 50% 50%);
+      opacity: 0.5;
+      filter: drop-shadow(0 0 15px #22c55e);
+      z-index: 0;
+    }
+
+    /* Container */
+    .w-full.max-w-md {
+      position: relative;
+      z-index: 1;
+      background: rgba(255 255 255 / 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgb(0 0 0 / 0.25);
+      padding: 2.5rem 2rem;
+      margin: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 45px;
+      width: 380px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(15px);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container h2 {
+      margin-bottom: 25px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 2rem;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .input-group input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 12px 12px 35px; /* espaço pro ícone */
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .input-group input:focus {
+      border-color: #9f8cff;
+      box-shadow: 0 0 8px #9f8cff;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    /* Ícone some quando o usuário digita */
+    .input-group input:not(:placeholder-shown) ~ i {
+      opacity: 0;
+    }
+
+    .input-group input::placeholder {
+      color: white;
+      opacity: 0.5;
+      padding: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #22C55E, #16A34A);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      user-select: none;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #16A34A, #15803D);
+      transform: scale(1.03);
+    }
+
+    button i {
+      font-size: 1.2rem;
+    }
+
+    .botao {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .botao:hover {
+      box-shadow: 0 6px 16px rgba(255, 255, 255);
+    }
+
+    .rodape {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 0.75rem;
+      user-select: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="botao"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+
+  <div class="container">
+    <h2>Cadastrar Contato</h2>
+    <form method="POST" action="">
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="nome" name="nome" placeholder="Digite o nome" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="email" name="email" placeholder="Digite o email" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-phone"></i>
+        <input type="tel" id="telefone" name="telefone" placeholder="Digite o telefone" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-map-marker-alt"></i>
+        <input type="text" id="endereco" name="endereco" placeholder="Digite o endereço" required />
+      </div>
+
+      <button type="submit"><i class="fa-solid fa-check"></i> Cadastrar Contato</button>
+    </form>
+
+    <div class="rodape">
+      <p>&copy; 2025 Murilo Rodrigues. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>
