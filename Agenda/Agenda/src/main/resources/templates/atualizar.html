@@ -2,207 +2,189 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <meta name="atualizar" content="width=device-width, initial-scale=1" />
-  <title>Atualizar Contatos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atualizar Contatos | Murilo Rodrigues</title>
   <style>
     body {
-  background: radial-gradient(circle at top left, #1e3a8a, #0f172a 80%);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-  color: #e0e7ff;
-}
-/* Container com vidro fosco + sombra e borda com gradiente */
-.w-full.max-w-md {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 2rem;
-  box-shadow:
-    0 8px 32px 0 rgba(31, 38, 135, 0.37),
-    0 0 0 1px rgba(255, 255, 255, 0.18);
-  padding: 3rem 2.5rem;
-  border: 2px solid transparent;
-  background-clip:rgb(18, 92, 10)g-box;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.4s ease;
-}
-
-
-    /* Formas geométricas no fundo */
-    body::before {
-      content: "";
-      position: fixed;
-      top: -120px;
-      left: -120px;
-      width: 400px;
-      height: 400px;
-      background: #6575A0; /* azul escuro complementar */
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      opacity: 0.6;
-      filter: drop-shadow(0 0 10px #1e40af);
-      z-index: 0;
-      border-radius: 20%;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      bottom: -100px;
-      right: -100px;
-      width: 350px;
-      height: 350px;
-      background: #F5C449; /* verde complementar */
-      clip-path: circle(50% at 50% 50%);
-      opacity: 0.5;
-      filter: drop-shadow(0 0 15px #22c55e);
-      z-index: 0;
-    }
-
-    /* Container */
-    .w-full.max-w-md {
-      position: relative;
-      z-index: 1;
-      background: rgba(255 255 255 / 0.2);
-      backdrop-filter: blur(12px);
-      border-radius: 1.5rem;
-      box-shadow: 0 8px 32px rgb(0 0 0 / 0.25);
-      padding: 2.5rem 2rem;
-      margin: 1rem;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .container {
-      background: rgba(255 255 255 / 0.1);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 1rem;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      max-width: 700px;
-      width: 100%;
-      padding: 2.5rem 3rem;
-      position: relative;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      z-index: 1;
+      min-height: 100vh;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
     }
 
     h1 {
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
       margin: 0;
-      text-align: center;
-      text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      font-size: 2.5rem;
     }
 
-    #contact-list {
-      width: 100%;
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+      width: 90%;
+      position: relative;
+      z-index: 10;
+    }
+
+    .contact-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .contact-item {
-      background: rgba(255 255 255 / 0.2);
-      border-radius: 0.75rem;
-      padding: 1rem 1.25rem;
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      font-weight: 500;
-      color: white;
-      backdrop-filter: blur(8px);
+      align-items: flex-start;
+      flex-wrap: wrap;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+    }
+
+    .contact-item div {
+      margin-bottom: 0.5rem;
     }
 
     .btn-atualizar {
-      background: rgba(0, 123, 255, 0.7);
+      background-color: #2980b9;
       border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
       color: white;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.3s;
       text-decoration: none;
-      display: inline-block;
-      user-select: none;
+      transition: background 0.3s;
     }
 
     .btn-atualizar:hover {
-      background: rgba(0, 123, 255, 0.9);
+      background-color: #1f6391;
     }
 
     #no-contacts {
-      color: rgba(255 255 255 / 0.75);
-      font-weight: 500;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+      color: #7f8c8d;
       font-size: 1rem;
-      user-select: none;
     }
 
-    #no-contacts::before {
-      content: "😕";
-      font-size: 2rem;
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
+      position: relative;
+      z-index: 10;
     }
 
+    /* Círculos decorativos dourados */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      z-index: 1;
+      pointer-events: none;
+      background: transparent;
+      border: 2px solid #d4af37;
+    }
+
+    .circle1 {
+      width: 300px;
+      height: 300px;
+      top: 50px;
+      left: 20px;
+    }
+
+    .circle2 {
+      width: 200px;
+      height: 200px;
+      top: 300px;
+      right: 30px;
+    }
+
+    .circle3 {
+      width: 240px;
+      height: 240px;
+      bottom: 40px;
+      left: 40px;
+    }
+
+    .circle4 {
+      width: 160px;
+      height: 160px;
+      bottom: 40px;
+      right: 80px;
+    }
+
+    /* Botão voltar */
     .botao {
       position: absolute;
       top: 20px;
       left: 20px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #ccc;
+      color: #2c3e50;
       font-weight: 500;
       text-decoration: none;
-      transition: 0.3s;
       display: flex;
       align-items: center;
-      gap: 8px;
-      user-select: none;
-      z-index: 1;
+      gap: 6px;
+      transition: 0.3s;
+      z-index: 20;
     }
-
     .botao:hover {
-      box-shadow: 0 6px 16px rgba(255, 255, 255);
-    }
-
-    .rodape {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 0.75rem;
-      user-select: none;
-      z-index: 1;
+      background: #2c3e50;
+      color: #fff;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
-  <div class="container">
+  <!-- Círculos decorativos -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+  <div class="circle circle4"></div>
+
+  <header>
     <a href="/" class="botao"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
-    <h1>Atualizar Contatos</h1>
-    <div id="contact-list" class="space-y-4">
+    <h1><i class="fas fa-edit"></i> Atualizar Contatos</h1>
+    <p>Edite informações dos seus contatos</p>
+  </header>
+
+  <main>
+    <div id="contact-list" class="contact-list">
       <div th:if="${#lists.isEmpty(contatos)}" id="no-contacts">
         Nenhum contato cadastrado ainda.
       </div>
+
       <div th:each="contato : ${contatos}" class="contact-item">
         <div>
           <div><strong th:text="${contato.nome}">Nome</strong></div>
@@ -213,10 +195,10 @@
         <a th:href="@{'/atualizar/editar/' + ${contato.id}}" class="btn-atualizar">Atualizar</a>
       </div>
     </div>
+  </main>
 
-    <div class="rodape">
-      <p>&copy; 2025 Murilo Rodrigues. Todos os direitos reservados.</p>
-    </div>
-  </div>
+  <footer>
+    &copy; 2025 Murilo Rodrigues. Todos os direitos reservados.
+  </footer>
 </body>
 </html>
