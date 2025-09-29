@@ -24,7 +24,7 @@ public class CadastroController {
 	@PostMapping(value = "/cadastro")
 	public String cadastro(Cadastro cadastro) {
 		cr.save(cadastro);
-		return "redirect:/";
+		return "redirect:/paginaInicial";
 	}
 	
 	@RequestMapping("/cadastro")
