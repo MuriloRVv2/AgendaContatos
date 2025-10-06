@@ -42,7 +42,7 @@ public class ContatoController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("erro", "Erro ao excluir contato: " + e.getMessage());
 		}
-		return "redirect:/";
+		return "redirect:/paginaInicial";
 	}
     
     @PostMapping("/excluir/{id}")
