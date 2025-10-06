@@ -1,7 +1,7 @@
 # AgendaContatos
 Agenda de contatos
 
-# Bem-Vindo à Agenda de Contatos de Murilo Rodrigues e Gabriel Fernandes!
+# Bem-Vindo à Agenda de Contatos de Murilo Rodrigues!
 
 A agenda é um programa simples que consiste em armazenar seus contatos importantes e mais próximos. Contendo uma tela de login(Ainda em desenvolvimento) para que os usuários possam fazer login sem precisar ter um número de telefone para poder cadastrar, vizualizar. atualizar ou deletar seus contatos; apenas fazendo login o usuário já conseguirá efetuar as ações mencionadas anteriormente.
 
