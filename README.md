@@ -20,7 +20,7 @@ Para você desenvolvedor que quer testar nosso projeto você terá que seguir os
 5. A partir disso o código deve funcionar corretamente.
 
 **ATENÇÃO**
-Em caso de erro, veja se a versão do JDK instalado em seu computador é a versão 21.	
+Em caso de erro, veja se a versão do Java instalado é a versão 21.	
 
 ## Funcionamento
 Para começar a cadastrar seus contatos, é necessário primeiro criar uma conta para poder entrar. Após isso já é possível começar a armazenar seus contatos.
